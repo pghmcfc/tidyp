@@ -1351,14 +1351,14 @@ void TY_(ReportAccessWarning)( TidyDocImpl* doc, Node* node, uint code )
 {
     ctmbstr fmt = GetFormatFromCode(code);
     doc->badAccess |= BA_WAI;
-    messageNode( doc, TidyAccess, node, fmt );
+    messageNode( doc, TidyAccess, node, "%s", fmt );
 }
 
 void TY_(ReportAccessError)( TidyDocImpl* doc, Node* node, uint code )
 {
     ctmbstr fmt = GetFormatFromCode(code);
     doc->badAccess |= BA_WAI;
-    messageNode( doc, TidyAccess, node, fmt );
+    messageNode( doc, TidyAccess, node, "%s", fmt );
 }
 
 #endif /* SUPPORT_ACCESSIBILITY_CHECKS */
@@ -1377,7 +1377,7 @@ void TY_(ReportWarning)(TidyDocImpl* doc, Node *element, Node *node, uint code)
     switch (code)
     {
     case NESTED_QUOTATION:
-        messageNode(doc, TidyWarning, rpt, fmt);
+        messageNode(doc, TidyWarning, rpt, "%s", fmt);
         break;
 
     case OBSOLETE_ELEMENT:
@@ -1458,7 +1458,7 @@ void TY_(ReportError)(TidyDocImpl* doc, Node *element, Node *node, uint code)
     case INCONSISTENT_NAMESPACE:
     case DOCTYPE_AFTER_TAGS:
     case DTYPE_NOT_UPPER_CASE:
-        messageNode(doc, TidyWarning, rpt, fmt);
+        messageNode(doc, TidyWarning, rpt, "%s", fmt);
         break;
 
     case COERCE_TO_ENDTAG:
@@ -1477,7 +1477,7 @@ void TY_(ReportError)(TidyDocImpl* doc, Node *element, Node *node, uint code)
     case ENCODING_IO_CONFLICT:
     case MISSING_DOCTYPE:
     case SPACE_PRECEDING_XMLDECL:
-        messageNode(doc, TidyWarning, node, fmt);
+        messageNode(doc, TidyWarning, node, "%s", fmt);
         break;
 
     case TRIM_EMPTY_ELEMENT:
@@ -1526,7 +1526,7 @@ void TY_(ReportFatal)( TidyDocImpl* doc, Node *element, Node *node, uint code)
     {
     case SUSPECTED_MISSING_QUOTE:
     case DUPLICATE_FRAMESET:
-        messageNode(doc, TidyError, rpt, fmt);
+        messageNode(doc, TidyError, rpt, "%s", fmt);
         break;
 
     case UNKNOWN_ELEMENT:
